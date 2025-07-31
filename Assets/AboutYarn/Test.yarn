@@ -1,0 +1,38 @@
+﻿title: Start
+position: -56,-54
+---
+<<set $mood = "happy">>
+
+Character A: Hello, welcome to our world!
+Character B: Nice to meet you!
+
+-> How are you?
+    Character A: I'm great!
+-> Not interested.
+    Character B: Oh... okay then.
+
+<<jump MyNextNode>>
+===
+title: MyNextNode
+position: 69,205
+---
+<<set $hasKey = false>>     
+<<set $mood = "neutral">>   
+
+旁白: 天色渐晚，你走进了一座神秘的村庄。
+村民: 嗨，陌生人，你来这里做什么？
+
+-> 我在找一把钥匙。
+    <<set $lookingForKey = true>>
+    村民: 钥匙？也许你可以去老屋看看
+-> 我只是路过。
+    村民: 哦，祝你一路顺风。
+
+<<if $lookingForKey>>
+村民: 老屋就在小路尽头，小心别迷路了。
+<<else>>
+村民: 天色已晚，你最好早点休息。
+
+主角: 这个地方……感觉有点熟悉。
+<<endif>>
+===
