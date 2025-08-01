@@ -1,38 +1,44 @@
 ﻿title: Start
-position: -56,-54
+position: -47,-162
 ---
-<<set $mood = "happy">>
 
-Character A: Hello, welcome to our world!
-Character B: Nice to meet you!
+原神爱好玩家: 你会用Yarn插件嘛
+原神资深玩家: 当然，这个yarn脚本包含了所有的用法
+原神资深玩家: 想学习吗，那你要先告诉我原神好不好玩
+-> 原神豪玩
+    <<set $likeGenshin = true>>    
+    原神资深玩家: 卧槽，原来你也！
+-> 原神不豪玩
+    <<set $likeGenshin = false>>   
+    原神资深玩家: 可恶，你居然！！！
 
--> How are you?
-    Character A: I'm great!
--> Not interested.
-    Character B: Oh... okay then.
-
-<<jump MyNextNode>>
+<<if $likeGenshin>>
+<<jump ILikeGenshin>>
+<<else>>
+<<jump IDonettLikeGenshin>>
+<<endif>>
 ===
-title: MyNextNode
+title: ILikeGenshin
 position: 69,205
 ---
-<<set $hasKey = false>>     
-<<set $mood = "neutral">>   
-
-旁白: 天色渐晚，你走进了一座神秘的村庄。
-村民: 嗨，陌生人，你来这里做什么？
-
--> 我在找一把钥匙。
-    <<set $lookingForKey = true>>
-    村民: 钥匙？也许你可以去老屋看看
--> 我只是路过。
-    村民: 哦，祝你一路顺风。
-
-<<if $lookingForKey>>
-村民: 老屋就在小路尽头，小心别迷路了。
-<<else>>
-村民: 天色已晚，你最好早点休息。
-
-主角: 这个地方……感觉有点熟悉。
-<<endif>>
+原神资深玩家: 首先从最基本的开始，在给角色添加对话时，为角色名字加英文冒号，后空格，再输入内容
+原神资深玩家: 一行就是一句话，接着讲变量，set是关键字，可以看这个脚本的示例，并且它的变量简单
+原神资深玩家: 变量只有字符串，数字，布尔值，分别可以用来执行函数时传参，if判断等，要$开头
+原神资深玩家: 接下来讲分句，像是最初的原神豪玩与否，就是一个分句，可以在后面set布尔值，达到多结局的效果
+原神资深玩家: 忘记说了，变量类似于py，不需要额外去做声明那一步（应该是）
+原神资深玩家: 你应该发现了，在yarn脚本的if语句，要有endif作为结尾
+原神资深玩家: 最后补充一些，jump为跳转节点，title书写时记得---开头，===结尾，可以参考示例
+原神资深玩家: 至于注释语法，请你自己尝试吧！！！，接下来是等待2s函数
+<<wait 2>>
+<<set $Mama = 555>>
+原神资深玩家: 最后拓展部分，当我们想在Yarn对话执行的时候调用代码脚本，可以在函数上挂载一个特性， [YarnCommand("setsprite")]，其中setsprite为自定义的名字，用法看这个Yarn的下一句
+原神资深玩家: 具体格式在这里，另外提醒一下，在传递变量时记得大括号，防止识别成字符串，vscode的这些提示可以忽视，unity运行正常就可以
+<<Umaru "Main Camera" "111" "第一个参数为挂载这个特性的名字，第二个参数为为挂载这个GameObject的名字" "接下来我们可以传递若干参数" {$Mama}>>
+原神资深玩家: 前面是特性里带着的名字，后面是传递的字符串，对的，我们可以往这个函数里传递字符串
+===
+title: IDonettLikeGenshin
+position: 69,205
+---
+原神资深玩家: 那就再见吧！
+<<jump Start>>
 ===

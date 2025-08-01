@@ -12,4 +12,5 @@ public class DialogueSystemTest : MonoBehaviour
     {
         runner.StartDialogue("Start"); // 指向 yarn 文件的 Start 节点
     }
+
 }
